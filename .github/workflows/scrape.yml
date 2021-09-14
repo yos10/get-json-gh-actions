@@ -2,7 +2,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron:  '0 4 * * *'
+    - cron:  "15 4 * * *"
 
 jobs:
   scheduled:
@@ -12,8 +12,8 @@ jobs:
       uses: actions/checkout@v2
     - name: Fetch latest data
       run: |-
-        curl https://opendata.corona.go.jp/api/Covid19JapanAll | jq . > total-cases.json
-      working-directory: ./src
+        curl https://opendata.corona.go.jp/api/Covid19JapanAll > total-cases.json
+      working-directory: ./data
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
