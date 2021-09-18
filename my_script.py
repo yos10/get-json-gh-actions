@@ -6,7 +6,7 @@ def get_json_data(url):
     json_data = response.json()
     return json_data
 
-def patients_by_prefecture(list):
+def extract_patients_by_prefecture(list):
     new_dict = {}
     for l in list:
         prefecture = l['name_jp']
@@ -38,8 +38,8 @@ def main():
 
     latest_date_item_list = json_data['itemList'][0:47]
     previous_date_item_list = json_data['itemList'][47:94]
-    latest_date_npatients_dict = patients_by_prefecture(latest_date_item_list)
-    previous_date_npatients_dict = patients_by_prefecture(previous_date_item_list)
+    latest_date_npatients_dict = extract_patients_by_prefecture(latest_date_item_list)
+    previous_date_npatients_dict = extract_patients_by_prefecture(previous_date_item_list)
 
     new_cases_list = calc_new_cases(latest_date_npatients_dict, previous_date_npatients_dict)
 
